@@ -5,9 +5,9 @@
 #!tag=Enhancement
 #!system=iOS,iPadOS
 #!system_version=15
-#!loon_version=3.5.1(984)
+#!loon_version=3.5.1(992)
 #!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Bilibili.png
-#!date=2026-08-30
+#!date=2026-09-15
 
 [Argument]
 displayUpList=select,"show","hide","auto",tag=[动态]中[最常访问]的显示方式
@@ -23,6 +23,10 @@ DOMAIN,app.biliapi.com,REJECT
 DOMAIN,api.biliapi.net,REJECT
 DOMAIN,app.biliapi.net,REJECT
 AND,((DOMAIN-SUFFIX,chat.bilibili.com), (OR,((DOMAIN-KEYWORD,stun), (DOMAIN-KEYWORD,tracker), (DOMAIN-KEYWORD,p2p)))),REJECT
+DEST-PORT,4480,REJECT-NO-DROP
+DEST-PORT,4483,REJECT-NO-DROP
+DEST-PORT,8082,REJECT-NO-DROP
+DEST-PORT,9102,REJECT-NO-DROP
 
 [Rewrite]
 request if ${url} ~= /^https:\/\/api\.live\.bilibili\.com\/xlive\/e-commerce-interface\/v1\/ecommerce-user\/get_shopping_info\?/ then reject_dict(200)
